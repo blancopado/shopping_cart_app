@@ -1,28 +1,27 @@
-== README
+## shopping-cart-app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A shopping cart app using Ruby on Rails and PostgreSQL.
 
-Things you may want to cover:
+Testing framework: Rspec & Capybara.
 
-* Ruby version
+##### User stories:
 
-* System dependencies
+As a buyer
+I want to see a list of products
+so I can select some to purchase
 
-* Configuration
+As a buyer
+I want to supply the information needed
+so I can create a new order
 
-* Database creation
+As a seller
+I want to show a list of products
+so I can sell them
 
-* Database initialization
+As a seller
+I want to determine the orders that are awaiting shipping
+so I can organise the shipments
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+As a seller
+I want to mark orders as shipped
+so I can finish a shipment
