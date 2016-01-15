@@ -1,17 +1,17 @@
-## shopping-cart-app
+# shopping-cart-app
 
 A shopping cart app using Ruby on Rails and PostgreSQL.
 
 Testing framework: Rspec & Capybara.
 
-##### User stories:
+#### User stories:
 
 As a buyer
-I want to see a list of products
+I want to see a list of products 
 so I can select some to purchase
 
 As a buyer
-I want to supply the information needed
+I want to supply the information neede
 so I can create a new order
 
 As a seller
