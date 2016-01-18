@@ -12,14 +12,27 @@ feature 'products' do
 
   context 'products have been added' do
 	  before do
-	    Product.create(title: 'cycle', description: 'good one', 
-	    							image_url: 'image.jpg', price: 100)
+	    Product.create(title: 'product_name', description: 'product description', 
+	    							image_url: 'image.jpg', price: 10)
 	  end
 
 	  scenario 'display products' do
 	    visit '/products'
-	    expect(page).to have_content('cycle' && 'good one')
+	    expect(page).to have_content('product_name' && 'product description')
 	    expect(page).not_to have_content('No products added')
+	  end
+	end
+
+	context 'show product details' do
+	  before do
+	    Product.create(title: 'product_name', description: 'product description', 
+	    							image_url: 'image.jpg', price: 10)
+	  end
+
+	  scenario 'display products' do
+	    visit '/products'
+	    click_link 'Show'
+	    expect(page).to have_content('product_name' && 'product description' && 'image.jpg' && 10)
 	  end
 	end
 
@@ -32,8 +45,8 @@ feature 'products' do
 	    fill_in 'Image url', with: 'image' #invalid url
 	    fill_in 'Price', with: 0 #invalid quantity
 	    click_button 'Create Product'
-	    expect(page).to have_content '4 errors prohibited this product from being saved:
-'
+	    expect(page).to have_content '4 errors prohibited this product from being saved'
+
 	  end
 	end
 
@@ -49,4 +62,28 @@ feature 'products' do
 	    expect(page).to have_content 'Product was successfully created'
 	  end
 	end
+
+	context 'updating and deleting products' do
+	  
+	  before do
+	    Product.create(title: 'product_name', description: 'product description', 
+	    							image_url: 'image.jpg', price: 10)
+	  end
+
+	  scenario 'click Update link and change product details' do
+	    visit '/products'
+	    click_link 'Edit'
+	    fill_in 'Image url', with: 'image2.jpg'
+	    fill_in 'Price', with: 20
+	    click_button 'Update Product'
+	    expect(page).to have_content('Product was successfully updated.')
+	  end
+
+	  scenario 'click Destroy link and remove the product' do
+	    visit '/products'
+	    click_link 'Destroy'
+	    expect(page).to have_content('Product was successfully destroyed.')
+	  end
+	end
 end
+
