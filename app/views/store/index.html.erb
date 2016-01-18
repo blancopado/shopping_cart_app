@@ -4,13 +4,17 @@
 
 <h1>Your Catalogue</h1>
 
-<% @products.each do |product| %>
-  <div class="entry">
-  	<%= image_tag(product.image_url) %>
-  	<h3><%= product.title %></h3>
-  	<%= sanitize(product.description) %>
-  	<div class="price_line">
-  		<p class="price"><%= product.price %></p>
-  	</div>
-  </div>
+<% cache ['store', Product.latest] do %>
+	<% @products.each do |product| %>
+		<% cache ['entry', product] do %>
+		  <div class="entry">
+		  	<%= image_tag(product.image_url) %>
+		  	<h3><%= product.title %></h3>
+		  	<%= sanitize(product.description) %>
+		  	<div class="price_line">
+		  		<p class="price"><%= number_to_currency(product.price, :locale => :en) %></p>
+		  	</div>	
+		  </div>
+		 <% end %>
+	<% end %>
 <% end %>

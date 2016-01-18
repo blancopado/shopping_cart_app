@@ -12,6 +12,7 @@ feature 'store' do
     scenario 'should display a list of products' do
       visit '/'
       expect(page).to have_content 'product_name' && 'product description'
+      expect(page).to have_content '£10.00'
     end
   end
 
